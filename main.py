@@ -71,6 +71,7 @@ class SerialApp:
                 except Exception as e:
                     print("Fehler beim Lesen der Daten:", e)
                     break
+        self.root.after(100, self.read_serial_data)
 
 
     def on_close(self):
