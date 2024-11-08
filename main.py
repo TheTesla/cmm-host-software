@@ -49,7 +49,7 @@ class SerialApp:
             self.open_serial(self.serial_port_name)
         elif not self.serial_port.is_open:
             self.open_serial(self.serial_port_name)
-        elif self.serial_port.port not in list_ports.comports():
+        elif self.serial_port.port not in [e.name for e in list_ports.comports()]:
             self.serial_port = None
         self.root.after(500,self.setup_serial)
 
@@ -67,6 +67,7 @@ class SerialApp:
     def close_serial(self):
         if self.serial_port:
             self.serial_port.close()  # Schließt die serielle Schnittstelle
+            print("Verbindung zur seriellen Schnittstelle getrennt.")
 
     def read_serial_data(self):
         try:
